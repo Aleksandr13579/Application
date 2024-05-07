@@ -69,8 +69,6 @@ nginx version = 1.26.0
 | 3 | Отключение RAM-кеш                                                                                        |sudo umount /var/nginx/cache|
 
 ### 4) Настройка SSL
-* Выпуск самоподписанного сертификата переходим в каталог ssl и выполняем команду:
-  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./nginx-selfsigned.key -out ./nginx-selfsigned.crt
 * Выпуск csr из req (пример в каталоге ssl) для дальнейшего подписания 
 
   | № | Действие                                    |Описание| 
