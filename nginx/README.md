@@ -1,6 +1,7 @@
 # Nginx
- 
-## Настройка ядра Linux
+
+### 1) Настройка ядра Linux
+файл sysctl/777-propetries-for-nginx.conf
 * Защита от smurf-атак
     net.ipv4.icmp_echo_ignore_broadcasts = 1
 * Защита от неправильных ICMP-сообщений
@@ -30,7 +31,27 @@
     net.core.netdev_max_backlog = 5000
     net.ipv4.tcp_window_scaling = 1
 
-## Конфигурироване nginx
-  СМ комментарии в файле nginx.conf
+### 2) Конфигурироване nginx
+*  Конфиг + комментарии в файле nginx.conf
 
-## V
+### 3) кэш Nginx в RAM
+* Можно значительно ускорить кэш, если смонтировать его не в файловую систему а в RAM. 
+Для этого также создаем папку для кэша (напрмер /var/nginx/cache), можно использовать ту же, но ее нужно очистить от папок. Далее монтируем созданный каталог в RAM с помощью команды tmpfs, выделяя 256 мегабайт под кэш:
+
+| № | Наименование                                                                                              |Команда|
+|---|-----------------------------------------------------------------------------------------------------------|-------|
+| 1 | Монтирование каталога к КЭШом в RAM                                                         |sudo mount -t tmpfs -o size=256M tmpfs /var/nginx/cache|
+| 2 | Чтобы автоматически пересоздать каталог кеша в RAM после перезагрузки, нам нужно обновить файл /etc/fstab |tmpfs /var/nginx/cache tmpfs defaults,size=256M 0 0|
+| 3 | Отключение RAM-кеш                                                                                        |sudo umount /var/nginx/cache|
+
+### 4) Настрйока SSL
+* Выпуск самоподписанного сертификата переходим в каталог ssl и выполняем команду:
+  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./nginx-selfsigned.key -out ./nginx-selfsigned.crt
+* Выпуск csr из req (пример в каталоге ssl) для дальнейшего подписания 
+
+  | № | Действие                                    |Описание| 
+  |---|---------------------------------------------|-------|
+  | 1 | Создаем приватный ключ                      |openssl genrsa -out new_tls.key 2048|
+  | 2 | Формируем CSR (Certificate Signing Request) |openssl req -new -key new_tls.key -out new_tls.csr -config req.conf|
+  | 3 | Формируем Root сертификат                   |openssl req -x509 -sha256 -nodes -new -key new_tls.key -out new_tls.crt -config req.conf     |
+  | 4 | Формируем подписанный сертфикат             | openssl x509 -sha256 -CAcreateserial -req -days 365 -in new_tls.csr -extfile req.conf -CA new_tls.crt -CAkey new_tls.key -out final.crt|
