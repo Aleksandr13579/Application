@@ -40,7 +40,7 @@
 
 | № | Наименование                                                                                              |Команда|
 |---|-----------------------------------------------------------------------------------------------------------|-------|
-| 1 | Монтирование каталога к КЭШом в RAM                                                         |sudo mount -t tmpfs -o size=256M tmpfs /var/nginx/cache|
+| 1 | Монтирование каталога к кешом в RAM                                                                       |sudo mount -t tmpfs -o size=256M tmpfs /var/nginx/cache|
 | 2 | Чтобы автоматически пересоздать каталог кеша в RAM после перезагрузки, нам нужно обновить файл /etc/fstab |tmpfs /var/nginx/cache tmpfs defaults,size=256M 0 0|
 | 3 | Отключение RAM-кеш                                                                                        |sudo umount /var/nginx/cache|
 
