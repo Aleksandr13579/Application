@@ -1,6 +1,6 @@
-# Application
+# Nginx
  
-Настройка ядра Linux
+## Настройка ядра Linux
 * Защита от smurf-атак
     net.ipv4.icmp_echo_ignore_broadcasts = 1
 * Защита от неправильных ICMP-сообщений
@@ -29,3 +29,8 @@
     net.core.wmem_max = 8388608
     net.core.netdev_max_backlog = 5000
     net.ipv4.tcp_window_scaling = 1
+
+## Конфигурироване nginx
+  СМ комментарии в файле nginx.conf
+
+## V
