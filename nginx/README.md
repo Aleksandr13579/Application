@@ -1,9 +1,9 @@
 # Nginx
 
-nginx version = 1.26.0
-debian version = Debian GNU/Linux 12x
-ubuntu version = Ubuntu 24.04 LTS
-redhat version = Red Hat Enterprise Linux release 8.6 (Ootpa)
+* nginx version = 1.26.0
+* debian version = Debian GNU/Linux 12x
+* ubuntu version = Ubuntu 24.04 LTS
+* redhat version = Red Hat Enterprise Linux release 8.6 (Ootpa)
 
 ## Ycтановка
 ### Rhel (запустить под sudo RHEL_install.sh)
