@@ -6,11 +6,15 @@ sudo sysctl -p;
 sudo sysctl --system;
 
 #ssl cert generate
-openssl genrsa -out tls.key 2048 && \
-openssl req -new -key tls.key -out tls.csr -config ./ssl/req.conf && \
-openssl req -x509 -sha256 -nodes -new -key key.key -out CAcert.crt -config ./ssl/req.conf && \
-openssl x509 -sha256 -CAcreateserial -req -days 365 -in tls.csr -extfile ./ssl/req.conf -CA CAcert.crt -CAkey tls.key -out tls.crt;
+openssl genrsa -out ./ssl/tls.key 2048 && \
+openssl req -new -key ./ssl/tls.key -out ./ssl/tls.csr -config ./ssl/req.conf && \
+openssl req -x509 -sha256 -nodes -new -key ./ssl/key.key -out ./ssl/CAcert.crt -config ./ssl/req.conf && \
+openssl x509 -sha256 -CAcreateserial -req -days 365 -in ./ssl/tls.csr -extfile ./ssl/req.conf -CA ./ssl/CAcert.crt -CAkey ./ssl/tls.key -out ./ssl/tls.crt;
 
+
+сp ./ssl/CAcert.crt /etc/ssl;
+cp ./ssl/tls.key /etc/ssl;
+cp ./ssl/tls.crt /etc/ssl;
 #Configure and start nginx server
 cp ./nginx.conf /etc/nginx/ ;
 nginx -t;

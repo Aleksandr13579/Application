@@ -20,3 +20,7 @@ sudo apt install nginx;
 nginx -v;
 systemctl enable nginx;
 systemctl start nginx;
+
+#configuring nginx
+chmod 755 configuring.sh;
+./configuring.sh

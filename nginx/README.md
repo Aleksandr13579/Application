@@ -6,7 +6,10 @@
 * redhat version = Red Hat Enterprise Linux release 8.6 (Ootpa)
 
 ## Ycтановка
-### Rhel (запустить под sudo RHEL_install.sh)
+
+#### Необходимо скопировать репазиторий через git clone 
+
+### RedHat (запустить под sudo RHEL_install.sh)
 1) Добавляем репозиторий для стабильной версии nginx
 2) Устанвливаем nginx
 3) Открываем http и https порты на фаерволе
@@ -28,7 +31,7 @@
 ---
 ## Настройка
 ### 1) Настройка ядра Linux
-файл sysctl/777-propetries-for-nginx.conf
+файл sysctl/777-properties-for-nginx.conf
 * Защита от smurf-атак
     net.ipv4.icmp_echo_ignore_broadcasts = 1
 * Защита от неправильных ICMP-сообщений

@@ -28,3 +28,7 @@ systemctl start nginx;
 
 #unlock http port in firewall
 firewall-cmd --zone=public --add-service=http
+
+#configuring nginx
+chmod 755 configuring.sh;
+./configuring.sh
