@@ -24,3 +24,6 @@ systemctl start nginx
 #configuring nginx
 chmod 755 configuring.sh;
 ./configuring.sh
+
+/usr/sbin/nginx -t
+/usr/sbin/nginx -s reload
