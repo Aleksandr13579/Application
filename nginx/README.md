@@ -7,7 +7,9 @@
 
 ## Ycтановка
 
-#### Необходимо скопировать репазиторий через git clone 
+#### Необходимо скопировать репазиторий через git clone
+#### chmod 755 <GNU_NAME>_install.sh configuring.sh
+#### статику кладем в каталог /var/www/html (параметр http.server.root в nginx.conf)
 
 ### RedHat (запустить под sudo RHEL_install.sh)
 1) Добавляем репозиторий для стабильной версии nginx
